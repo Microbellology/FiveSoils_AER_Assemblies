@@ -1,0 +1,6 @@
+
+#load krakentools
+python /safs-data02/dennislab/sw/krakentools/1.2/kreport2krona.py -r In_with_musa_kraken.report -o In_with_musa_kraken.krona
+
+#load Krona
+ktImportText In_with_musa_kraken.krona -o In_with_musa_kraken.krona.html
