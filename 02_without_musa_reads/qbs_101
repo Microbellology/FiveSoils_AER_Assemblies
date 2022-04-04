@@ -1,0 +1,18 @@
+qstat - recent job history and running jobs
+
+qdel <job number> - cancels job
+
+pbsnodes -aS | grep ^flvc - check status of big nodes
+
+submit jobs
+3 queues - based on wall time
+short <24hrs
+medium 24-168hrs (1wk)
+long >168-336hrs (1-2wks)
+
+RDM
+/QRISdata/Q0775/ - Banana
+/QRISdata/Q0775/ - dennislab RDM
+
+run jobs
+qsub spades.pbs
