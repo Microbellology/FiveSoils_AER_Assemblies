@@ -95,5 +95,13 @@ Traceback (most recent call last):
 TypeError: startswith first arg must be bytes or a tuple of bytes, not str
 
 # often when the last forloop was run in a screen it would run smoothly, without the error
-#so it was then moved out of the original forloop, to see if that woudl solve the issue.
+#so it was then moved out of the original forloop, to see if that would solve the issue.
 # it has not
+
+# the issie kind of just resolved itself, this issue stopped occuring - I didn't change anything
+
+# once we had the reads I ran SPAdes.
+
+## binning methods ##
+
+# we first were using Metabat2 as that is the binner we originally used for 

@@ -11,17 +11,17 @@ load_maxbin
 load_biosquid
 
 # set which taxonomic group you will be assembling
-#j=c__Nitrospiria
-j=c__Thermoleophilia
-#j=f__Bacillaceae
+#j=c__Nitrospiria ##
+#j=c__Thermoleophilia ##
+#j=f__Bacillaceae ##
 #j=f__Beijerinckiaceae
 #j=f__Microbacteriaceae
 #j=f__Rhizobiaceae
-#j=f__Rhodanobacteraceae
-#j=o__Streptomycetales
+#j=f__Rhodanobacteraceae ##
+j=o__Streptomycetales ##
 
-#set up working directory in scratch
-cd /safs-data01/uqbclar8/
+#set up working directory in scratch drive
+cd /safs-data01/uqbclar8/01_missing_taxa_mapping
 mkdir ${j}_binning/
 mkdir ${j}_binning/01_bins
 

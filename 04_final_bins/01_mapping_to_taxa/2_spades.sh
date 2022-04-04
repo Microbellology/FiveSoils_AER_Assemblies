@@ -12,17 +12,17 @@
 module load spades/3.13.0
 
 # go to working directory - in this case I use the scratch drive
-cd /safs-data01/uqbclar8/
+cd /safs-data01/uqbclar8/01_missing_taxa_mapping/
 
 # set which taxonomic group you will be assembling
-#j=c__Nitrospiria
-j=c__Thermoleophilia
-#j=f__Bacillaceae
+#j=c__Nitrospiria ##
+#j=c__Thermoleophilia  ##
+#j=f__Bacillaceae  ##
 #j=f__Beijerinckiaceae
 #j=f__Microbacteriaceae
 #j=f__Rhizobiaceae
-#j=f__Rhodanobacteraceae
-#j=o__Streptomycetales
+#j=f__Rhodanobacteraceae ##
+j=o__Streptomycetales ##
 
 
 # make output directories
