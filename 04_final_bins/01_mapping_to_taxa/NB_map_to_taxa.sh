@@ -104,4 +104,9 @@ TypeError: startswith first arg must be bytes or a tuple of bytes, not str
 
 ## binning methods ##
 
-# we first were using Metabat2 as that is the binner we originally used for 
+# we first were using Metabat2 as that is the binner we originally used for all the other assemblies
+# however, metabat2 reqires contigs of 1500bp or more. We then switched to maxbin
+# maxbin can process contigs that are 50bp or more.
+
+# This approached still failed and we were unable to pull out any extra bins from what we had
+# As of the 1st of April we have stopped pursuing this. 
