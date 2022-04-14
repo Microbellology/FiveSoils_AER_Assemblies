@@ -8,10 +8,10 @@ module load bwa
 load_samtools_1.9
 
 # asign variables
-SOIL=Tu
+SOIL=To
 
 # go to working directory
-cd /safs-data01/uqbclar8/02_assembly/06_refineM/${SOIL}/
+cd /safs-data01/uqbclar8/07_MAG_polishing/02_refineM/${SOIL}/
 
 # Index the contig file
 bwa index spades.contigs.min1500.fasta

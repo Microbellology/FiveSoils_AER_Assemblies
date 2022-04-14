@@ -11,3 +11,13 @@ for i in `ls *table.txt`; do
   cat ${i} >> mega_table.tsv
   echo -e "\n" >> mega_table.tsv
 done
+
+
+for i in ` awk '{print $1}' nitrospiria.txt`; do
+  echo ${i}* #>> nitrospiria_full_path.txt
+done
+
+
+for i in `ls *fna`; do
+  echo /safs-data01/uqbclar8/01_missing_taxa_mapping/01_reference_fasta_files/1_nitrospiria/nitrospiria_cp/${i} >> nitrospiria_ref_list.txt
+done

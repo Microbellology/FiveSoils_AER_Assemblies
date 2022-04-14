@@ -109,4 +109,6 @@ TypeError: startswith first arg must be bytes or a tuple of bytes, not str
 # maxbin can process contigs that are 50bp or more.
 
 # This approached still failed and we were unable to pull out any extra bins from what we had
-# As of the 1st of April we have stopped pursuing this. 
+# As of the 1st of April we have stopped pursuing this.
+
+sbatch -c 2 --mem=200GB --partition=safs --priority=999999999 --time=365-0:00:00 --no-kill --job-name=bwaMem bwa_mem.sh

@@ -18,21 +18,21 @@
 #run blast on the server - talk to Young
 
 #assign taxon you want to look at
-taxon=o__Streptomycetales
+taxon=streptomyces
 
 ##Getting the genomes you want#
 
-#Make a copy of the text file with the list of ID'#!/bin/sh
+#Make a copy of the text file w%ith the list of ID'#!/bin/sh
 cp ${taxon}.txt ${taxon}_cp.txt
 vi ${taxon}_cp.txt
 %s/RS_//g   #removes RS_ characters
 %s/GB_//g #%s/ replace, A/B replace A with B, /g do for all %s/A/B/g
 %s/_//g #remove underscore
 
-#. means any characters. use a back slash to make  . = . not . = *
-%s/\.\d\+$//g  ##removes .1 and .2. \d = didget, \+ = dodget that occurs once or more, $ anything in the regugar expression happens at the end of the line
+# . means any characters. use a back slash to make  . = . not . = *
+%s/\.\d\+$//g  ##removes .1 and .2. \d = didget, \+ = didget that occurs once or more, $ anything in the regugar expression happens at the end of the line
 %s/.\{3}/&\//g #add / between every 3 didgets split the string by chunks of three characters and at the end of each segment, add '/' to it
-#.\{3} for any 3 characters, & detects the instance of every 3 characters, precer / with \ to make it the literal meaning.
+# .\{3} for any 3 characters, & detects the instance of every 3 characters, precer / with \ to make it the literal meaning.
 %s/^/\/safs-data02\/dennislab\/db\/gtdbtk\/r202\/fastani\/database\//g #^ mean begining of each line
 esc :wq
 #now we have copy and original
@@ -48,6 +48,19 @@ vi ${taxon}_full_path.txt
 #now add file extension
 %s/$/_genomic\.fna\.gz/g #$ end of line
 esc :wq
+
+## alternative to the paste option, that bipasses the editing lines above ##
+for i in ` awk '{print $1}' ${taxon}_cp.txt`; do
+  echo ${i}* >> ${taxon}_full_path.txt
+done
+# to do this the original file needs to be copied from notepad to a brand new vi txt file
+# if you drag and drop the txt file from you rlocal drive to the server, the forloop wont work
+
+# not all the genomic files are actually there, which is why the forloop is useful
+# so now just remove the lines without genomic file
+vi ${taxon}_full_path.txt
+g/*/d # g stands for global, and d stands for delete. the pattern goes in the middle. So, globally, delete lines with the pattern *
+:wq
 
 #make prep dir
 mkdir ${taxon}_prep
@@ -80,6 +93,8 @@ vi ${taxon}_fna_contig_list.txt
 #make another prep folder
 mkdir ${taxon}_contig_prep
 mv ${taxon}_fna_contig_list.txt ${taxon}_contig_prep/
+
+streptomyces_contig_list
 
 #split it
 cd ${taxon}_contig_prep/

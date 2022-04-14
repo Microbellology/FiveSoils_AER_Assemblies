@@ -16,5 +16,5 @@ gtdbtk classify_wf --genome_dir all_polished_bins/ --out_dir gtdbtk_all_bins/ -x
 #cp -r gtdbtk/ /safs-data02/dennislab/Public/belle/5soils/final_bins/
 
 
-#sbatch -c 1 --mem=300GB --partition=safs --nodelist==safs-2-0 --priority=999999999 --time=365-0:00:00 --no-kill --job-name=gtdbtk 7_gtdbtk.sh
+#sbatch -c 1 --mem=300GB --partition=safs --nodelist=safs-2-0 --priority=999999999 --time=365-0:00:00 --no-kill --job-name=gtdbtk 7_gtdbtk.sh
 #Submitted batch job 11287427

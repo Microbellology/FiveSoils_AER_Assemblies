@@ -103,8 +103,12 @@ coverm genome -c reads/*fastq.gz -d all_polished_bins/ -x fa -o coverm_all_bins/
 # Moving forward it would be good to polish the bins that we have to see if we can increase the quality
 # of any of them.
 
-$ RefineM
+$ MAG_Polishing
 
+# here we want to remove chimers, contamination and the like to obtain more complete MAGs
+# I use 3 different software: refineM, gunc and magpurify
+
+RefineM
 ## generating Bamfiles ##
 
 # first we need to generate bam files of the reads that map to the SPAdes opera assebly specifically
@@ -176,3 +180,38 @@ mkdir output
 # run refineM
 refinem scaffold_stats -c 2 -x fa spades_opera_assemblies_combined.fasta /safs-data01/uqbclar8/02_assembly/02_dRep_no_qc_ALL_bins/ output/ *bam
 "
+
+gunc
+# we are using gunc to detect genome chimerism
+# all of these steps were done in an active node with 1 core anf 5 mem on the MAG
+# Li_bin.15_spades_polished.fa, which was a highly contaminated but nearly complete
+# Nitrospirota, making it a good candidate to test these programs and what they can do
+
+#gunc run
+'gunc run -i 02_dRep_no_qc_ALL_bins/Li_bin.15_spades_polished.fa -r /safs-data02/dennislab/db/gunc/progenomes/'
+# this will give you diamond output
+
+#gunc plot
+'gunc plot -d diamond_output/Li_bin.15_spades_polished.diamond.progenomes_2.1.out -o 02_plot'
+#this will give you a HTML files that is an interactive plot
+
+#gunc checkm_merg
+#first we need to make the checkM files
+
+# I followed the taxonomy_wf but did each step manually
+checkm taxon_set domain Bacteria marker_file
+#this generates the marker file that can then be used by analyse
+checkm analyze checkm analyze marker_file bin/ ../03_MergCheckM/
+#when I ran checkM qa I followed the recommended addiotions by the gunc manual: https://grp-bork.embl-community.io/gunc/usage.html
+checkm qa marker_file ../03_MergCheckM/ -f qa.tsv -o 2 --tab_table
+#this ensures the output of the checkM file is suitable to then fee into gunc
+
+# once you have generated the qa.tsv file with checkM you can then run the gunc checkM_merg function
+gunc merge_checkm -g ../GUNC.progenomes_2.1.maxCSS_level.tsv -c qa.tsv
+#this gives you the output of gunc run and checkM in one file
+
+## more information on the gunc run output ##
+
+MAGpurify
+#magpurify has a function that results in the removal of contaminant contigs
+#firstly we'll start with Phylo markers
